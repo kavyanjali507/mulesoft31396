@@ -1,0 +1,41 @@
+package jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class insert_data {
+	public static void main(String args[]) {
+		try {
+		Connection con = null;
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		System.out.println("Driver class loaded");
+	    con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","root");
+	    System.out.println("connection establised");
+	    Statement stmt = con.createStatement();
+	    //int emp_id;
+	    String movie_names= null;
+	    String lead_actor= null;
+	    String actress = null;
+	    String year_of_release = null;
+	    Scanner sc = new Scanner(System.in);
+	    System.out.println("enter the movie name: ?");
+	    movie_names = sc.next();
+	    System.out.println("enter the lead_actor: ?");
+	    lead_actor = sc.next();
+	    System.out.println("enter the actress name: ?");
+	    actress = sc.next();
+	    System.out.println("enter the year of the relaese of movie: ?");
+	    year_of_release = sc.next();
+	    String qry ="insert into movies_table values('"+movie_names+"','"+lead_actor+"','"+actress+"','"+year_of_release+"')";
+	    stmt.executeUpdate(qry);
+	    System.out.println("records are inserted");
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+	
+	}
+
+}
