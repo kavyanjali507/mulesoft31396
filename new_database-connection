@@ -1,0 +1,27 @@
+package jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class new_database {
+	public static void main(String args[]) {
+		try {
+		Connection con = null;
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		System.out.println("Driver class loaded");
+	    con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","root");
+	    System.out.println("connection establised");
+	    Statement stmt = con.createStatement();
+    	String qry = "CREATE DATABASE MULESOFT_TRAINING";
+        stmt.executeUpdate(qry);
+        System.out.println("Database successfully created ......");
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+	
+	}
+
+}
+
